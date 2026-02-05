@@ -16,5 +16,5 @@ var selectionSort = function (nums) {
 
     console.log(nums)
 }
-let nums = [100,35, 500, 9, 67, 20]
+let nums = [-1,2,-8,-10]
 selectionSort(nums)
