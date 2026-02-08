@@ -9,7 +9,7 @@ var insertionSort = function (nums) {
             nums[k] = nums[k -1]
             nums[k -1] = temp
             k--;
-        }
+         }
     }
 
     console.log(nums)
