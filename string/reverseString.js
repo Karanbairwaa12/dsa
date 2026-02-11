@@ -32,20 +32,8 @@ var reverseStr = function(s, k) {
     
 };
 
-var reverseWithKElement = function(s,k) {
-    let j = 0;
-    let res = ""
-    for(let i =0;i<s.length;i++) {
-        console.log(i, j, Math.floor(i+1/2*k))
-        if(Math.floor(i+1/2*k) === 1){
-            res = res + reverse(s.slice(j, j+k))+ s.slice(j+k, i+1)
-            j = i +1;
-        }
-
-        
-    }
-}
-reverseWithKElement("abcdefg", 2)
+//  
+reverseWithKElement("abcdefghijkl", 2)
 
 
 // console.log("karanfds".slice(0,4))
