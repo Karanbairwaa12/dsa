@@ -46,8 +46,13 @@ const maxSubSum = require('./maxSubSum')
 // require("./recursion-2/floodfill-2")
 // require("./recursion-2/targetSum")
 // require("./recursion-2/checkIsQueenSafe")
+<<<<<<< Updated upstream
 // require("./recursion-2/knight-tour")
 require("./recursion-2/knight-tour-check")
+=======
+// require("./recursion-2/goingTroughRows")
+require("./recursion-2/n-queens")
+>>>>>>> Stashed changes
 // require("./recursion-2/targetSum-2")
 const arr = [4, 2, 9, 9, 10]
 // findLargest(arr)
