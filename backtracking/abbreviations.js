@@ -6,7 +6,7 @@ let printAbbreviation = function (str) {
             }else {
                 console.log(path)
             }
-            return;
+            return; 
         }
         let char = str[i];
         if(count > 0) {
