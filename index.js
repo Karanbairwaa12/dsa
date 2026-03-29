@@ -46,14 +46,21 @@ const maxSubSum = require('./maxSubSum')
 // require("./recursion-2/floodfill-2")
 // require("./recursion-2/targetSum")
 // require("./recursion-2/checkIsQueenSafe")
-<<<<<<< Updated upstream
+
 // require("./recursion-2/knight-tour")
-require("./recursion-2/knight-tour-check")
-=======
+// require("./recursion-2/knight-tour-check")
 // require("./recursion-2/goingTroughRows")
-require("./recursion-2/n-queens")
->>>>>>> Stashed changes
+// require("./recursion-2/n-queens")
+// require("./recursion-2/knight-tour-check")
 // require("./recursion-2/targetSum-2")
+// require("./backtracking/wordsScore")
+// require("./recursion-pr/printNumber")
+// require("./recursion-pr/getSubsequence")
+// require("./recursion-pr/getKeyboardPath")
+// require("./recursion-pr/getStairPath")
+// require("./recursion-pr/getMazPath")
+// require("./recursion-pr/printSubsequence")
+require("./recursion-pr/printParmutation")
 const arr = [4, 2, 9, 9, 10]
 // findLargest(arr)
 // sortColors([2, 0, 2, 1, 1, 0])
