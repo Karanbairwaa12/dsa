@@ -1,5 +1,5 @@
 
-var robotSim = function (commands, obstacles) {
+var robotSim = function (commands, ob) {
     let cords = [0, 0];
     let face = 'n';
     for (let i = 0; i < commands.length; i++) {
@@ -23,24 +23,28 @@ var robotSim = function (commands, obstacles) {
             } else {
                 face = "n"
             }
-        }else {
-            for(let j =0;j<obstacles.length;j++) {
-                
+        } else {
+            for (let j = 0; j < ob.length; j++) {
+                if (face === "n") {
+                    if (ob[0] === cords[0] && cords[1] + commands[i] > ob[1]) {
+                        cords[1] = cords[1] + ob[1] - 1
+                    } else {
+                        cords[1] = cords[1] + commands[i]
+                    }
+                } else if (face === "e") {
+                    cords[0] = cords[0] + commands[i]
+                } else if (face === "s") {
+                    cords[1] = cords[1] - commands[i]
+                } else {
+                    cords[0] = cords[0] + commands[i]
+                }
             }
-            if (face === "n") {
-                cords[1] = cords[1] + commands[i]
-            } else if (face === "e") {
-                cords[0] = cords[0] + commands[i]
-            } else if (face === "s") {
-                cords[1] = cords[1] - commands[i]
-            } else {
-                cords[0] = cords[0] + commands[i]
-            }
+
         }
     }
     console.log(cords)
 };
 
-let commands = [4,-1,4,-2,4]
-let obstacles = []
-robotSim(commands, obstacles)
+let commands = [4, -1, 4, -2, 4]
+let ob = []
+robotSim(commands, ob)
