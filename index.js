@@ -67,6 +67,8 @@ const arr = [4, 2, 9, 9, 10]
 // require("./recursion-pr/n-queen")
 // require("./recursion-pr/k-nights")
 // require("./backtracking/printAbrivation")
+// require("./backtracking/sudoku-solver")
+require('./greedy-algo/minimum-conins')
 // findLargest(arr)
 // sortColors([2, 0, 2, 1, 1, 0])
 // console.log(majorityElement([2,2,1,1,1,2,2]))
