@@ -89,4 +89,6 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/coin-change")
 // require("./dp/coin-change2")
 // require('./dp/01-knapsack')
-require("./dp/unbound-knapsack")
+// require("./dp/unbound-knapsack")
+// require("./dp/num-of-ways-select-building")
+require("./math/mirror-distance")
