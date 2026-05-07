@@ -95,4 +95,5 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/count-subsequence-ABC")
 // require("./dp/max-sub-sequence")
 // require("./dp/paint-house-2")
-require("./dp/paint-fence")
+// require("./dp/paint-fence")
+require("./dp/lis-print")
