@@ -5,6 +5,9 @@ var countSquares = function(matrix) {
     let sum = 0;
     for(let i =m-1;i>=0;i--) {
         for(let j = n-1;j>=0;j--) {
+            if(matrix[i][j] === 0) {
+                continue;
+            }
             if(i === m-1 || j === n-1) {
                 dp[i][j] = matrix[i][j]
             }else {
@@ -13,7 +16,7 @@ var countSquares = function(matrix) {
             sum += dp[i][j]
         }
     }
-    console.log(sum, dp)
+    // console.log(sum, dp)
     return sum
 };
 

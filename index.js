@@ -112,5 +112,8 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/matrix/maximum-squares")
 // require("./dp/matrix/maximum-number-of-point-with-cost")
 // require("./dp/matrix/triangle")
-require("./dp/matrix/squre")
+// require("./dp/matrix/squre")
+// require("./dp/matrix/cherry-pick-2")
+// require("./dp/subsequence/sum-target-subset.js")
+require("./dp/subsequence/partition-equl-subset.js")
 
