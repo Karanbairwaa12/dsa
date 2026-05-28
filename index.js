@@ -115,5 +115,8 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/matrix/squre")
 // require("./dp/matrix/cherry-pick-2")
 // require("./dp/subsequence/sum-target-subset.js")
-require("./dp/subsequence/partition-equl-subset.js")
+// require("./dp/subsequence/partition-equl-subset.js")
+// require("./dp/1-linear/perfect-square")
+// require("./dp/1-linear/2-key-keyword.js")
+require("./dp/2-d-gridy/knight-probability")
 
