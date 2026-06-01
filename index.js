@@ -118,5 +118,8 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/subsequence/partition-equl-subset.js")
 // require("./dp/1-linear/perfect-square")
 // require("./dp/1-linear/2-key-keyword.js")
-require("./dp/2-d-gridy/knight-probability")
+// require("./dp/2-d-gridy/knight-probability")
+// require("./dp/dp-concept/cut-rod.js")
+// require("./dp/dp-concept/knapsake-2.js")
+require("./dp/dp-concept/book-shop-3.js")
 
