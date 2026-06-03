@@ -121,5 +121,8 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/2-d-gridy/knight-probability")
 // require("./dp/lcs/lcs")
 // require("./dp/lcs/lcs-gfg.js")
-require("./dp/lcs/lcs-gfg-3.js")
+// require("./dp/lcs/lcs-gfg-3.js")
+// require("./dp/dp-concept/cut-rod.js")
+// require("./dp/dp-concept/knapsake-2.js")
+require("./dp/dp-concept/book-shop-3.js")
 
