@@ -133,5 +133,10 @@ const arr = [4, 2, 9, 9, 10]
 // require('./dp/lcs/longest-palindromic-substring.js')
 // require('./dp/lcs/longest-repeting-subsequence.js')
 // require("./dp/contest/valid-binary-string.js")
-require("./dp/lcs/longest-repeating-subsequence.js")
+// require("./dp/lcs/longest-repeating-subsequence.js")
+// require("./dp/lcs/count-distinct-subsequence.js")
+// require("./dp/lcs/minimum-ascii-sum.js")
+// require("./dp/lcs/count-distinct-subsequence.js")
+// require("./dp/lcs/distinct-subsequence.js")
+require("./dp/lcs/interleaving-string.js")
 
