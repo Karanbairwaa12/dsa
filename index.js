@@ -150,3 +150,4 @@ const arr = [4, 2, 9, 9, 10];
 // require("./dp/partition/palindrom-partitioning.js")
 // require("./graph/bfs.js")
 // require("./graph/find-path-exist.js")
+require("./graph/detect-cycle.js")
