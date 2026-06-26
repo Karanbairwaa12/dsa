@@ -139,5 +139,5 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/lcs/count-distinct-subsequence.js")
 // require("./dp/lcs/distinct-subsequence.js")
 // require("./dp/lcs/interleaving-string.js")
-require("./dp/partition/matrix-chain-multiplication")
-
+// require("./dp/partition/matrix-chain-multiplication")
+require("./grph/number-of-provinces")
