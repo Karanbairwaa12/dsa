@@ -1,6 +1,6 @@
 // const {findLargest} = require('./largestNumber')
-const majorityElement = require('./majorityElement')
-const maxSubSum = require('./maxSubSum')
+const majorityElement = require("./majorityElement");
+const maxSubSum = require("./maxSubSum");
 // require('./patterns')
 // require('./nvidiaApi')
 // require("./armstrongNumber")
@@ -39,8 +39,8 @@ const maxSubSum = require('./maxSubSum')
 // require("./string/LongestCommonPrefix")
 // require("./string/isAnagram")
 // require("./string/groupAnagram")
-// require("./converStringInCommaSeprateNumber")   
-// require("./stack/NextGreaterElement") 
+// require("./converStringInCommaSeprateNumber")
+// require("./stack/NextGreaterElement")
 // require("./heap/MyHeap")
 // require("./recursion-2/floodfill")
 // require("./recursion-2/floodfill-2")
@@ -63,7 +63,7 @@ const maxSubSum = require('./maxSubSum')
 // require("./recursion-pr/printParmutation")
 // require("./backtracking/maximum-score-word")
 // require("./backtracking/printLexographical")
-const arr = [4, 2, 9, 9, 10]
+const arr = [4, 2, 9, 9, 10];
 // require("./recursion-pr/n-queen")
 // require("./recursion-pr/k-nights")
 // require("./backtracking/printAbrivation")
@@ -140,4 +140,13 @@ const arr = [4, 2, 9, 9, 10]
 // require("./dp/lcs/distinct-subsequence.js")
 // require("./dp/lcs/interleaving-string.js")
 // require("./dp/partition/matrix-chain-multiplication")
-require("./grph/number-of-provinces")
+// require("./grph/number-of-provinces")
+// require("./dp/lcs/wildcard.js")
+// require("./dp/lcs/regular-expression");
+// require("./dp/partition/matrix-chain-multiplication");
+// require("./dp/partition/burst-bloon.js");
+// require("./dp/partition/cutting-rod")
+// require("./dp/partition/minimum-cost-cut-stick.js")
+// require("./dp/partition/palindrom-partitioning.js")
+// require("./graph/bfs.js")
+// require("./graph/find-path-exist.js")
