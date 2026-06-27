@@ -150,4 +150,7 @@ const arr = [4, 2, 9, 9, 10];
 // require("./dp/partition/palindrom-partitioning.js")
 // require("./graph/bfs.js")
 // require("./graph/find-path-exist.js")
-require("./graph/detect-cycle.js")
+// require("./graph/detect-cycle.js")
+// require("./graph/find-nearest-one")
+// require("./graph/replace-o-with-x")
+require("./graph/number-of-enclaves")
