@@ -154,4 +154,7 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/find-nearest-one")
 // require("./graph/replace-o-with-x")
 // require("./graph/number-of-enclaves")
-require("./graph/number-of-distinct-island")
+// require("./graph/number-of-distinct-island")
+// require("./graph/bipartite.js")
+// require("./graph/detect-cycle-direct-graph")
+require("./graph/safe-states")
