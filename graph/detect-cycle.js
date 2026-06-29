@@ -9,7 +9,7 @@ const detecteBfs = function (sr, adj, vis) {
       if (vis[adjNode] != 1) {
         vis[adjNode] = 1;
         qu.push([adjNode, x]);
-      } else if (adjNode != y) {
+      } else if (adjNode != y && y != -1) {
         return true;
       }
     }
