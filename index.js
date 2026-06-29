@@ -157,4 +157,5 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/number-of-distinct-island")
 // require("./graph/bipartite.js")
 // require("./graph/detect-cycle-direct-graph")
-require("./graph/safe-states")
+// require("./graph/safe-states")
+require("./graph/safe-states.js")
