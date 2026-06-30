@@ -3,48 +3,55 @@ const safeNodes = function (V, edges) {
   for (let [u, v] of edges) {
     adj[u].push(v);
   }
-  console.log(adj, "adj");
+
   let vis = new Array(V).fill(0);
-  let isPath = new Array(V).fill(0);
-  let isSafe = [];
-  let tn = new Array(adj.length).fill(0);
-  for (let i = 0; i < adj.length; i++) {
-    if (adj[i].length == 0) {
-      tn[i] = 1;
+  let psf = new Array(V).fill(0);
+
+  let dfs = function (i) {
+    for (let node of adj[i]) {
+      if (vis[node] == 0) {
+        vis[node] = 1;
+        psf[node] = 1;
+        if (!dfs(node)) return false;
+      } else if (vis[node] == 1 && psf[node] == 1) {
+        return false;
+      }
     }
-  }
-  let dfs = function(i) {
-    for(let node of adj[i]) {
-        if(vis[node] == 0) {
-            vis[node] = 1;
-            isPath[node] = 1;
-            if(dfs(i)) return true;
-        }else if(isPath[node] == 1)  {
-            return false;
-        }
-    }
-    isPath[i] = 0;
-    if(tn[i] == 1) return true;
-    return false;
-  }
+    psf[i] = 0;
+    return true;
+  };
 
   for (let i = 0; i < V; i++) {
-    if (tn[i] != 0) {
-      isSafe.push(i);
-    } else {
-      if (dfs(i)) isSafe.push(i);
+    if (vis[i] == 0) {
+      vis[i] = 1;
+      psf[i] = 1;
+      dfs(i);
     }
   }
 
-  console.log(isSafe)
+  let states = []
+  for(let i =0;i<psf.length;i++) {
+    if(psf[i] == 0) {
+      states.push(i)
+    }
+  }
+
+  console.log(states);
 };
 
 let edges = [
-  [1, 0],
+  [0, 1],
   [1, 2],
-  [1, 3],
-  [1, 4],
   [2, 3],
   [3, 4],
+  [4, 6],
+  [6, 7],
+  [3, 5],
+  [5, 6],
+  [8, 1],
+  [8, 9],
+  [9, 10],
+  [10, 8],
+  [11, 9],
 ];
-safeNodes(5, edges);
+safeNodes(12, edges);
