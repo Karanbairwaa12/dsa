@@ -3,7 +3,6 @@ const safeNodes = function (V, edges) {
   for (let [u, v] of edges) {
     adj[u].push(v);
   }
-  console.log(adj)
 
   let vis = new Array(V).fill(0);
   let psf = new Array(V).fill(0);
@@ -38,18 +37,6 @@ const safeNodes = function (V, edges) {
   }
 
   console.log(states);
-
-
-   //khans algo
-    //reverse the adj
-    // let graph = Array.from({length: adj.length}, () => [])
-
-    // for(let i =0;i<adj.length;i++) {
-    //     for(let j =0;j<adj[i].length;j++) {
-    //         graph[adj[i][j]].push(i);
-    //     }
-    // }
-    // console.log(graph)
 };
 
 let edges = [
