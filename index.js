@@ -162,4 +162,5 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/detect-cycle-direct-graph")
 // require("./graph/safe-states")
 // require("./graph/kahns-topo-algo.js")
-require("./graph/safe-states.js")
+// require("./graph/safe-states.js")
+require("./graph/alien-dictionary")
