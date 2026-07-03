@@ -7,7 +7,7 @@ let findOrder = function (words) {
     let y = 0;
     while (x < words[i - 1].length && y < words[i].length) {
       if (words[i - 1][x] != words[i][y]) {
-        console.log(words[i - 1][x], words[i][y]);
+        // console.log(words[i - 1][x], words[i][y]);
         word.push([
           words[i - 1][x].codePointAt(0) - 97,
           words[i][y].codePointAt(0) - 97,
@@ -28,6 +28,7 @@ let findOrder = function (words) {
     } else {
       adj[u].push(v);
     }
+    if (adj[v] == undefined) adj[v] = [];
     if (inDegree[v] == undefined) {
       inDegree[v] = 1;
     } else {
@@ -37,23 +38,27 @@ let findOrder = function (words) {
     // if(adj[v] === undefined) adj[v] = [];
     // inDegree[v] = inDegree[v] != undefined ? inDegree[v] + 1 : 1;
   }
-  //   console.log(word, adj, inDegree);
+//   console.log(word, adj, inDegree);
   let qu = [];
   let st = [];
   for (let [key, value] of Object.entries(inDegree)) {
     if (value == 0) qu.push(Number(key));
   }
-
+//   console.log(qu);
   while (qu.length > 0) {
     let val = qu.shift();
     st.push(val);
-    for (let node of Object.keys(adj[val])) {
-        console.log(node,adj)
+    for (let node of adj[val]) {
+    //   console.log(node);
       inDegree[node] = inDegree[node] - 1;
       if (inDegree[node] == 0) qu.push(node);
     }
   }
-  console.log(qu, st);
+  let res = ''
+  for(let w of st) {
+    res += String.fromCharCode(w + 97)
+  }
+  console.log(qu, st, res);
 };
 let words = ["baa", "abcd", "abca", "cab", "cad"];
 findOrder(words);
