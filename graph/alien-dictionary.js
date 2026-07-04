@@ -1,7 +1,7 @@
 let findOrder = function (words) {
+  
   // code here
   let word = [];
-  let set = new Set();
   for (let i = 1; i < words.length; i++) {
     let x = 0;
     let y = 0;
