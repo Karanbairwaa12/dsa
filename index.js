@@ -166,4 +166,5 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/alien-dictionary")
 // require("./graph/dag-shortest-path")
 // require("./graph/shortest-path-in-undirected-graph.js")
-require("./graph/word-ladder-1")
+// require("./graph/word-ladder-1")
+require("./graph/shortest-path-weighted.js")

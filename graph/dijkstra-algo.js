@@ -22,14 +22,6 @@ let dijkstra = function (V, edges, src) {
             }
         }
     }
+    console.log(dis)
+    return dis
 };
-
-
-edges = [
-    [0, 1, 2],
-    [0, 2, 4],
-    [1, 2, 1],
-    [1, 3, 7],
-    [2, 4, 3],
-    [3, 4, 1]
-];
