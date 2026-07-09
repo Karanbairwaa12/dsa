@@ -136,11 +136,12 @@ let shortestPath = function (V, E, edges) {
     adj[v].push([u, d])
   }
 
-  console.log(adj)
+//   console.log(adj)
   let dist = new Array(V+1).fill(Number.MAX_SAFE_INTEGER)
   
   dist[1] =0;
   let pq = new MinPriorityQueue()
+  let parent = new Array(V+1).fill(1)
   pq.push([1, 0])
   while(pq.size() > 0){
     let [node, dis] = pq.pop()
@@ -148,14 +149,27 @@ let shortestPath = function (V, E, edges) {
     for(let [adjNode, edgeWeight] of adj[node]) {
         if(dis + edgeWeight < dist[adjNode]) {
           dist[adjNode] = dis + edgeWeight
-          pq.push([adjNode, dis[adjNode]])
+          pq.push([adjNode, dist[adjNode]])
+		  parent[adjNode] = node
         }
     }
   }
-  console.log(dist)
+//   console.log(dist, parent)
+  if(dist[V] != -1) {
+	let arr = [V]
+	let node = V;
+	while(parent[node] != node) {
+		arr.push(parent[node])
+		node = parent[node]
+	}
+	arr.push(dist[V])
+	// console.log(arr.reverse())
+	return arr.reverse()
+  }
+  return [-1]
 };
 
 let V = 5
 let E = 6
-let edges = [[1, 2, 2], [2, 5, 5], [2, 3, 4], [1, 4, 1], [4, 3, 3], [3, 5, 1]]
+let edges = [[1,2,2],[1,4,1],[2,3,4],[2,5,5],[4,3,3],[3,5,1]]
 shortestPath(V, E, edges)
