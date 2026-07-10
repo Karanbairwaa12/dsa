@@ -143,6 +143,7 @@ let shortestPathMat = function (mat, src, dest) {
   dmat[sr][sc] = 0;
   pq.push([0, sr, sc]);
 
+  
   let dir = [
     [1, 0],
     [0, 1],
