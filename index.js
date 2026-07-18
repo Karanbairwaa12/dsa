@@ -169,4 +169,7 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/word-ladder-1")
 // require("./graph/shortest-path-weighted.js")
 // require("./graph/path-with-minimum-effort")
-require("./graph/shortest-path-with-k-most-nodes.js")
+// require("./graph/shortest-path-with-k-most-nodes.js")
+// require("./graph/number-of-ways-to-arrive-dest")
+// require("./graph/bellman-ford-algo.js")
+require("./graph/kruskal-algo")
