@@ -1,3 +1,7 @@
+/**
+ * @param {string[][]} accounts
+ * @return {string[][]}
+ */
 class DisjointSet {
 	constructor(size) {
 		// Parent array: stores the parent of each element
@@ -132,98 +136,33 @@ class DisjointSet {
 	}
 }
 
-var findCircleNum = function (arr) {
-	//     if (arr.length === 0) return 0;
-	//     let count = 0;
-	//     let vis = new Array(arr.length).fill(0)
-	//     let bfs = []
-	//     for (let i = 0; i < arr.length; i++) {
-	//         if (vis[i] === 0) {
-	//             bfs.push(i)
-	//             vis[i] = 1;
-	//             while (bfs.length > 0) {
-	//                 let id = bfs.pop()
-	//                 for (let j = 0; j < arr[id].length; j++) {
-	//                     if (arr[id][j] == 1 && vis[j] == 0) {
-	//                         bfs.push(j)
-	//                         vis[j] = 1;
-	//                     }
-	//                 }
-	//             }
-	//             count++;
-	//         }
-	//     }
+var accountsMerge = function(arr) {
+    let ds = new DisjointSet(arr.length);
+        let map = {}
+        for(let i =0;i<arr.length;i++){
+            for(let j = 1;j<arr[i].length;j++) {
+                if(map[arr[i][j]] == undefined) {
+                    map[arr[i][j]] = i;
+                }else {
+                    ds.unionByRank(map[arr[i][j]], i)
+                }
+            }
+        }
+        let set = {}
+        for(let [key, value] of Object.entries(map)) {
+            let parent= ds.find(value);
+            if(set[parent] == undefined) {
+                set[parent] = [key]
+            }else {
+                set[parent].push(key)
+            }
+        }
+        let result = []
+        for(let [parentIndex, emails] of Object.entries(set)) {
+            emails.sort();
+            let name = arr[parentIndex][0];
+            result.push([name, ...emails]);
+        }
 
-	//    return count;
-
-	let adj = Array.from({ length: arr.length }, () => Array().fill([]));
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr.length; j++) {
-			if (arr[i][j] == 1 && i != j) {
-				adj[i].push(j);
-				// adj[j].push(i+1)
-			}
-		}
-	}
-	let vis = new Array(arr.length).fill(0);
-	let count = 0;
-
-	let dfs = function (node) {
-		vis[node] = 1;
-		for (let adjNode of adj[node]) {
-			if (!vis[adjNode]) {
-				dfs(adjNode);
-			}
-		}
-	};
-	// for(let i=0;i<arr.length;i++) {
-	//     if(!vis[i]) {
-	//         dfs(i);
-	//         count++;
-	//     }
-	// }
-
-	// for (let i = 0; i < arr.length; i++) {
-	// 	if (!vis[i]) {
-	// 		let qu = [i];
-	// 		vis[i] = 1;
-	// 		while (qu.length > 0) {
-	// 			let node = qu.shift();
-
-	// 			for (let adjNode of adj[node]) {
-	// 				if (!vis[adjNode]) {
-	// 					vis[adjNode] = 1;
-	// 					qu.push(adjNode);
-	// 				}
-	// 			}
-	// 		}
-	// 		count++;
-	// 	}
-	// }
-
-  let ds = new DisjointSet(arr.length);
-  for(let i =0;i<arr.length;i++) {
-    for(let j =0;j<arr.length;j++) {
-      if(adj[i][j] == 1 && i != j) {
-        ds.unionByRank(i, j)
-      }
-    }
-  }
-
-  for(let i =0;i<arr.length;i++) {
-    if(ds.find(i) == i) {
-      count++;
-    }
-  }
-
-	return count;
+        return result;
 };
-
-let isConnected = [
-	[1, 0, 0, 0, 1],
-	[0, 1, 0, 0, 0],
-	[0, 0, 1, 1, 0],
-	[0, 0, 1, 1, 0],
-	[1, 0, 0, 0, 1],
-];
-findCircleNum(isConnected);
