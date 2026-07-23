@@ -173,4 +173,6 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/number-of-ways-to-arrive-dest")
 // require("./graph/bellman-ford-algo.js")
 // require("./graph/kruskal-algo")
-require("./graph/number-of-iceland")
+// require("./graph/number-of-iceland")
+// require("./graph/disjoint-matrix-max-component.js")
+require("./graph/making-larg-island.js")
