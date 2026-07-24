@@ -175,4 +175,5 @@ const arr = [4, 2, 9, 9, 10];
 // require("./graph/kruskal-algo")
 // require("./graph/number-of-iceland")
 // require("./graph/disjoint-matrix-max-component.js")
-require("./graph/making-larg-island.js")
+// require("./graph/making-larg-island.js")
+require("./graph/most-stones-remove.js")
