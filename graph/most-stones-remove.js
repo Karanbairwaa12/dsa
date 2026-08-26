@@ -1,187 +1,190 @@
-class MinPriorityQueue {
-  constructor(arr = []) {
-    this.heap = [...arr];
-  }
+class DisjointSet {
+	constructor(size) {
+		// Parent array: stores the parent of each element
+		this.parent = new Array(size);
+		// Rank array: stores the depth of each tree (for union by rank)
+		this.rank = new Array(size);
+		// Size array: stores the size of each set (alternative to rank)
+		this.size = new Array(size);
 
-  // ======================
-  // Index Helpers
-  // ======================
+		// Initialize each element as its own set
+		for (let i = 0; i < size; i++) {
+			this.parent[i] = i; // Each node is its own parent
+			this.rank[i] = 0; // Initial rank is 0
+			this.size[i] = 1; // Initial size is 1
+		}
+	}
 
-  getParentIndex(index) {
-    return Math.floor((index - 1) / 2);
-  }
+	// Find the root of an element with path compression
+	find(element) {
+		// Base case: found the root
+		if (this.parent[element] !== element) {
+			// Path compression: recursively find root and update parent
+			this.parent[element] = this.find(this.parent[element]);
+		}
+		return this.parent[element];
+	}
 
-  getLeftChild(index) {
-    return 2 * index + 1;
-  }
+	// Alternative: Iterative find with path compression
+	findIterative(element) {
+		let root = element;
 
-  getRightChild(index) {
-    return 2 * index + 2;
-  }
+		// Find the root
+		while (this.parent[root] !== root) {
+			root = this.parent[root];
+		}
 
-  // ======================
-  // Utility
-  // ======================
+		// Path compression: make all nodes point directly to root
+		while (this.parent[element] !== element) {
+			const next = this.parent[element];
+			this.parent[element] = root;
+			element = next;
+		}
 
-  swap(i, j) {
-    [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
-  }
+		return root;
+	}
 
-  peek() {
-    return this.heap[0];
-  }
+	// Union two elements by rank (optimized)
+	unionByRank(element1, element2) {
+		const root1 = this.find(element1);
+		const root2 = this.find(element2);
 
-  print() {
-    console.log(this.heap);
-  }
+		// Already in the same set
+		if (root1 === root2) return;
 
-  isEmpty() {
-    return this.heap.length === 0;
-  }
+		// Attach smaller rank tree under larger rank tree
+		if (this.rank[root1] < this.rank[root2]) {
+			this.parent[root1] = root2;
+		} else if (this.rank[root1] > this.rank[root2]) {
+			this.parent[root2] = root1;
+		} else {
+			// Same rank: make one root the parent and increment rank
+			this.parent[root2] = root1;
+			this.rank[root1]++;
+		}
+	}
 
-  size() {
-    return this.heap.length;
-  }
+	// Union two elements by size (alternative optimization)
+	unionBySize(element1, element2) {
+		const root1 = this.find(element1);
+		const root2 = this.find(element2);
 
-  // ======================
-  // Heapify
-  // ======================
+		if (root1 === root2) return;
 
-  heapifyUp(index) {
-    if (index === 0) return;
+		// Attach smaller set under larger set
+		if (this.size[root1] < this.size[root2]) {
+			this.parent[root1] = root2;
+			this.size[root2] += this.size[root1];
+		} else {
+			this.parent[root2] = root1;
+			this.size[root1] += this.size[root2];
+		}
+	}
 
-    let parent = this.getParentIndex(index);
+	// Check if two elements are in the same set
+	areConnected(element1, element2) {
+		return this.find(element1) === this.find(element2);
+	}
 
-    if (this.heap[index][0] < this.heap[parent][0]) {
-      this.swap(index, parent);
-      this.heapifyUp(parent);
-    }
-  }
+	// Get the number of disjoint sets
+	getNumberOfSets() {
+		let count = 0;
+		for (let i = 0; i < this.parent.length; i++) {
+			if (this.parent[i] === i) {
+				count++;
+			}
+		}
+		return count;
+	}
 
-  heapifyDown(index, limit = this.heap.length) {
-    let smallest = index;
+	// Get all elements in a specific set
+	getSetElements(element) {
+		const root = this.find(element);
+		const elements = [];
+		for (let i = 0; i < this.parent.length; i++) {
+			if (this.find(i) === root) {
+				elements.push(i);
+			}
+		}
+		return elements;
+	}
 
-    let left = this.getLeftChild(index);
-    let right = this.getRightChild(index);
+	// Get all sets
+	getAllSets() {
+		const sets = new Map();
+		for (let i = 0; i < this.parent.length; i++) {
+			const root = this.find(i);
+			if (!sets.has(root)) {
+				sets.set(root, []);
+			}
+			sets.get(root).push(i);
+		}
+		return Array.from(sets.values());
+	}
 
-    if (left < limit && this.heap[left][0] < this.heap[smallest][0]) {
-      smallest = left;
-    }
-
-    if (right < limit && this.heap[right][0] < this.heap[smallest][0]) {
-      smallest = right;
-    }
-
-    if (smallest !== index) {
-      this.swap(index, smallest);
-      this.heapifyDown(smallest, limit);
-    }
-  }
-
-  // ======================
-  // Core Operations
-  // ======================
-
-  push(value) {
-    this.heap.push(value);
-    this.heapifyUp(this.heap.length - 1);
-  }
-
-  pop() {
-    if (this.heap.length === 0) return null;
-
-    if (this.heap.length === 1) {
-      return this.heap.pop();
-    }
-
-    let root = this.peek();
-
-    this.heap[0] = this.heap.pop();
-    this.heapifyDown(0);
-
-    return root;
-  }
-
-  // ======================
-  // Heap Operations
-  // ======================
-
-  buildMinHeap() {
-    for (let i = Math.floor(this.heap.length / 2) - 1; i >= 0; i--) {
-      this.heapifyDown(i);
-    }
-  }
-
-  // Produces descending order
-  heapSort() {
-    this.buildMinHeap();
-
-    let limit = this.heap.length - 1;
-
-    while (limit > 0) {
-      this.swap(0, limit);
-      this.heapifyDown(0, limit);
-      limit--;
-    }
-
-    return this.heap;
-  }
+	// Reset the data structure
+	reset() {
+		for (let i = 0; i < this.parent.length; i++) {
+			this.parent[i] = i;
+			this.rank[i] = 0;
+			this.size[i] = 1;
+		}
+	}
 }
 
 function maxRemove(stones) {
-    
-  let [rows, cols] = stones[stones.length - 1];
-  let arr = Array.from({ length: rows }, () => Array(cols).fill(0));
-
-  for (let [i, j] of stones) {
-    arr[i][j] = 1;
+	let rows = 0;
+  let cols = 0
+  for(let [r,c] of stones){
+    rows = Math.max(rows, r)
+    cols = Math.max(cols, c)
   }
+	let ds = new DisjointSet((rows+1)*(cols+1));
+	let arr = Array.from({ length: rows + 1 }, () => Array(cols + 1).fill(0));
+	// console.log(arr, "arr");
 
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[0].length; j++) {
-      if (arr[i][j] == 0) continue;
+	for (let [i, j] of stones) {
+		arr[i][j] = 1;
+	}
+	console.log(arr, "arr");
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr[0].length; j++) {
+			if (arr[i][j] == 0) continue;
 
-      let id = i * cols + j;
+			let id = i * (cols + 1) + j;
 
-      for (let col = 0; col < cols; col++) {
-        if (col != j && arr[i][col] == 1) {
-          let newnode = i * cols + col;
-          let root1 = ds.find(id);
-          let root2 = ds.find(newnode);
-          if (root1 != root2) {
-            ds.unionByRank(id, newnode);
-          }
-        }
-      }
+			for (let col = 0; col <= cols; col++) {
+        // console.log(i,j, col)
+				if (col != j && arr[i][col] == 1) {
+					let newnode = i * (cols + 1) + col;
+					let root1 = ds.find(id);
+					let root2 = ds.find(newnode);
+					if (root1 != root2) {
+						ds.unionByRank(id, newnode);
+					}
+				}
+			}
+      // console.log(ds.rank)
 
-      for (let row = 0; row < rows; row++) {
-        if (row != i && arr[row][j] == 1) {
-          let newnode = row * cols + j;
-          let root1 = ds.find(id);
-          let root2 = ds.find(newnode);
-          if (root1 != root2) {
-            ds.unionByRank(id, newnode);
-          }
-        }
-      }
-    }
+			for (let row = 0; row <= rows; row++) {
+				if (row != i && arr[row][j] == 1) {
+					let newnode = row * (cols + 1) + j;
+					let root1 = ds.find(id);
+					let root2 = ds.find(newnode);
+					if (root1 != root2) {
+						ds.unionByRank(id, newnode);
+					}
+				}
+			}
+		}
+	}
+  let set = new Set();
+  for(let [r, c] of stones){
+    let id = r*(cols+1) + c;
+    set.add(ds.find(id))
   }
-
-  let count = 0;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[0].length; j++) {
-      if (arr[i][j] == 0) continue;
-
-      let id = i * cols + j;
-
-        if(ds.find(id) == id) {
-            count++;
-        }
-    }
-  }
-
-
+  return stones.length - set.size;
 }
 
-let stones = [[0,0],[0,1],[1,0],[1,2],[2,1],[2,2]]
+let stones = [[0,0],[0,2],[1,1],[2,0],[2,2]];
 maxRemove(stones);
